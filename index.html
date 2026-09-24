@@ -1258,49 +1258,93 @@ function imageToJpeg(file, maxW, quality){
     img.src = url;
   });
 }
-let scanToken = 0;
+let scanToken = 0, lastScan = null;
+const loading = msg => { $('fuBody').innerHTML = `<div class="loading"><div class="spin"></div><span id="fuLoadMsg">${msg}</span></div>`; };
 async function onTicketFile(e){
   const file = e.target.files[0]; if(!file) return;
   $('fuTitle').textContent = 'Escanear ticket'; $('fuSub').textContent = '';
-  $('fuBody').innerHTML = `<div class="loading"><div class="spin"></div>Analizando ticket con IA...</div>`;
-  showSheet('fuelSheet');
-  const token = scanToken = Date.now();
-  let thumb = null;
+  loading('Preparando la foto...'); showSheet('fuelSheet');
   try{
     const big = await imageToJpeg(file, 1024, 0.8);
-    thumb = await imageToJpeg(file, 160, 0.5);
-    const data = await askGemini(big.split(',')[1]);
-    if(token!==scanToken || openSheetEl?.id!=='fuelSheet') return;
-    openFuel(data, thumb, 'Revisa los datos que ha leído la IA antes de guardar.');
+    const thumb = await imageToJpeg(file, 160, 0.5);
+    lastScan = { b64: big.split(',')[1], big, thumb };
   }catch(err){
-    if(token!==scanToken || openSheetEl?.id!=='fuelSheet') return;
-    openFuel({ fecha:keyOf(now.getFullYear(),now.getMonth(),now.getDate()) }, thumb, '', `No se pudo leer el ticket: ${esc(err.message)}. Puedes rellenar los datos a mano.`);
+    openFuel({ fecha:keyOf(now.getFullYear(),now.getMonth(),now.getDate()) }, null, '', 'No se ha podido abrir la foto. Prueba con otra o rellena los datos a mano.'); return;
+  }
+  runScan();
+}
+// Envía la foto guardada en memoria a Gemini (también desde el botón «Reintentar»)
+async function runScan(){
+  if(!lastScan) return;
+  const token = scanToken = Date.now(), scan = lastScan;
+  $('fuTitle').textContent = 'Escanear ticket'; $('fuSub').textContent = '';
+  loading('Analizando ticket con IA...'); showSheet('fuelSheet');
+  const alive = () => token===scanToken && openSheetEl?.id==='fuelSheet';
+  try{
+    const data = await askGemini(scan.b64, msg => { if(alive() && $('fuLoadMsg')) $('fuLoadMsg').textContent = msg; });
+    if(!alive()) return;
+    openFuel(data, scan.thumb, 'Revisa los datos que ha leído la IA antes de guardar.', null, null, scan.big);
+  }catch(err){
+    if(!alive()) return;
+    openFuel({ fecha:keyOf(now.getFullYear(),now.getMonth(),now.getDate()) }, scan.thumb, '',
+      `No se pudo leer el ticket: ${esc(err.message)}.${err.retry?' Pulsa «Reintentar» dentro de un momento o':''} Puedes rellenar los datos a mano.`, null, scan.big, !!err.retry);
   }
 }
 $('scanCam').addEventListener('change', onTicketFile);
 $('scanGal').addEventListener('change', onTicketFile);
-async function askGemini(b64){
-  const model = (S.settings.model || DEFAULT_MODEL).trim();
+const FALLBACK_MODELS = ['gemini-3.5-flash-lite', 'gemini-3.1-flash-lite'];   // modelos alternativos si el principal está saturado
+const sleep = ms => new Promise(r=>setTimeout(r, ms));
+function apiError(msg, retry=false, nextModel=false){ const e = new Error(msg); e.retry = retry; e.nextModel = nextModel; return e; }
+async function callGemini(model, b64, prompt){
+  const ctrl = new AbortController(), timer = setTimeout(()=>ctrl.abort(), 45000);
+  let res;
+  try{
+    res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent?key=${encodeURIComponent(aiKey())}`, {
+      method:'POST', headers:{ 'Content-Type':'application/json' }, signal: ctrl.signal,
+      body: JSON.stringify({
+        contents:[{ parts:[ { text:prompt }, { inlineData:{ mimeType:'image/jpeg', data:b64 } } ] }],
+        generationConfig:{ responseMimeType:'application/json' }
+      })
+    });
+  }catch(e){
+    throw apiError(e.name==='AbortError' ? 'la IA ha tardado demasiado en responder' : 'no se ha podido conectar con Google', true);
+  }finally{ clearTimeout(timer); }
+  const data = await res.json().catch(()=>({}));
+  if(!res.ok){
+    const msg = data?.error?.message || `error ${res.status}`;
+    if(res.status===400 && /API key/i.test(msg)) throw apiError('la API Key no es válida');
+    if(res.status===403) throw apiError('la API Key no tiene permiso para usar Gemini');
+    if(res.status===404) throw apiError(`el modelo "${model}" no existe`, false, true);
+    if(res.status===429) throw apiError('se ha alcanzado el límite de uso gratuito de la API', true, true);
+    if(res.status>=500) throw apiError('los servidores de Google están saturados en este momento', true, true);
+    throw apiError(msg);
+  }
+  return data;
+}
+async function askGemini(b64, onStatus=()=>{}){
   const prompt = `Eres un lector de tickets de gasolinera españoles. Extrae los datos del repostaje de la imagen.
 Responde SOLO con un objeto JSON, sin texto adicional ni markdown, con exactamente estos campos:
 {"litros": número, "precio_litro": número, "total_euros": número, "fecha": "YYYY-MM-DD", "gasolinera": "nombre o marca"}
 Usa punto como separador decimal. Si un dato no aparece, pon null.`;
-  if(!navigator.onLine) throw new Error('no hay conexión a internet');
-  const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent?key=${encodeURIComponent(aiKey())}`, {
-    method:'POST', headers:{ 'Content-Type':'application/json' },
-    body: JSON.stringify({
-      contents:[{ parts:[ { text:prompt }, { inlineData:{ mimeType:'image/jpeg', data:b64 } } ] }],
-      generationConfig:{ responseMimeType:'application/json' }
-    })
-  });
-  const data = await res.json().catch(()=>({}));
-  if(!res.ok){
-    const msg = data?.error?.message || `error ${res.status}`;
-    if(res.status===400 && /API key/i.test(msg)) throw new Error('la API Key no es válida');
-    if(res.status===404) throw new Error(`el modelo "${model}" no existe; revisa el nombre en Ajustes`);
-    if(res.status===429) throw new Error('has superado el límite de uso de la API; prueba más tarde');
-    throw new Error(msg);
+  if(!navigator.onLine) throw apiError('no hay conexión a internet', true);
+  const main = (S.settings.model || DEFAULT_MODEL).trim();
+  const models = [main, ...FALLBACK_MODELS.filter(m=>m!==main)];
+  let data = null, lastErr = null;
+  outer:
+  for(let mi=0; mi<models.length; mi++){
+    for(let attempt=1; attempt<=2; attempt++){
+      try{ data = await callGemini(models[mi], b64, prompt); break outer; }
+      catch(e){
+        lastErr = e;
+        if(!e.retry && !e.nextModel) throw e;                    // API Key mala, etc.: no tiene sentido insistir
+        if(e.nextModel && !e.retry) break;                        // modelo inexistente: probar el siguiente
+        if(attempt===1 && !/límite/.test(e.message)){ onStatus('Google está saturado, reintentando...'); await sleep(2500); }
+        else break;
+      }
+    }
+    if(mi < models.length-1) onStatus('Probando con otro modelo de IA...');
   }
+  if(!data) throw lastErr || apiError('no se ha podido leer el ticket', true);
   const text = (data.candidates?.[0]?.content?.parts||[]).filter(p=>!p.thought).map(p=>p.text||'').join('');
   const clean = text.replace(/```json|```/g, '').trim();         // limpieza de markdown antes de parsear
   if(!clean.includes('{')) throw new Error(data.promptFeedback?.blockReason ? 'la IA ha rechazado la imagen' : 'la IA no ha encontrado datos en la foto');
@@ -1316,7 +1360,7 @@ Usa punto como separador decimal. Si un dato no aparece, pon null.`;
   return obj;
 }
 let fuelDraft = null;
-function openFuel(d, thumb, sub, err, editId=null){
+function openFuel(d, thumb, sub, err, editId=null, preview=null, canRetry=false){
   const n = v => (v===null||v===undefined||v==='') ? '' : String(v).replace('.',',');
   fuelDraft = { thumb, editId };
   let L=num(d.litros), P=num(d.precio_litro), T=num(d.total_euros);
@@ -1326,7 +1370,8 @@ function openFuel(d, thumb, sub, err, editId=null){
   $('fuTitle').textContent = editId ? 'Ticket' : 'Repostaje'; $('fuSub').textContent = sub||'';
   $('fuBody').innerHTML = `
     ${err?`<div class="errBox">${err}</div>`:''}
-    ${thumb?`<img class="ticketImg" src="${thumb}" alt="Ticket">`:''}
+    ${(preview||thumb)?`<img class="ticketImg" src="${preview||thumb}" alt="Ticket">`:''}
+    ${canRetry?'<button class="btn" id="fuRetry" style="margin-bottom:12px;background:rgba(255,214,106,.16);color:#ffd76a">🔄 Reintentar con IA</button>':''}
     <div class="list">
       <div class="field"><label for="fuSta">Gasolinera</label><input type="text" id="fuSta" value="${esc(d.gasolinera||'')}" placeholder="Nombre o marca"></div>
       <div class="field"><label for="fuDate">Fecha</label><input type="date" id="fuDate" value="${esc(/^\d{4}-\d{2}-\d{2}$/.test(d.fecha||'')?d.fecha:keyOf(now.getFullYear(),now.getMonth(),now.getDate()))}"></div>
@@ -1350,6 +1395,7 @@ function updAuton(){
 $('fuBody').addEventListener('input', e=>{ if(['fuL','fuSta'].includes(e.target.id)) updAuton(); });
 $('fuBody').addEventListener('click', e=>{
   if(e.target.id==='fuCancel'){ hideSheets(); fuelDraft=null; return; }
+  if(e.target.id==='fuRetry'){ buzz(); runScan(); return; }
   if(e.target.id==='fuDel'){
     if(!confirm('¿Borrar este ticket?')) return;
     S.refuels = S.refuels.filter(r=>r.id!==fuelDraft.editId);
