@@ -41,8 +41,7 @@ button{background:none;border:0;cursor:pointer}
 header{position:fixed;top:0;left:0;right:0;z-index:20;height:auto;isolation:isolate;
   padding:max(env(safe-area-inset-top), 24px) max(18px, env(safe-area-inset-right)) 10px max(18px, env(safe-area-inset-left));
   border-bottom:.5px solid var(--sep);display:flex;align-items:center;gap:11px}
-header::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:rgba(0,0,0,.78);
-  -webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px)}
+header::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:#000}
 header > div{min-width:0}
 header h1,header .sub{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 header .hTotal{flex:none}
@@ -367,7 +366,9 @@ header h1 .ver{display:inline-block;font-size:.62em;font-weight:700;vertical-ali
 /* ======================= MoneyPetrol 2.0 ======================= */
 .splash .spHint{font-size:14px;color:var(--text2);margin-top:4px;animation:rise .7s .45s ease both, pulse 2.4s 1.2s ease-in-out infinite}
 @keyframes pulse{50%{opacity:.45}}
-.splash .spCredit{font-style:italic;font-size:12px;color:var(--text3);margin-top:14px;letter-spacing:.2px;animation:rise .7s .55s ease both}
+@font-face{font-family:'MP Firma';font-style:normal;font-weight:400;font-display:block;src:url(data:font/woff2;base64,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) format('woff2')}
+.splash .spCredit{position:absolute;left:0;right:0;bottom:max(8px, calc(env(safe-area-inset-bottom) - 12px));text-align:center;font-family:'MP Firma','Snell Roundhand','Apple Chancery',cursive;font-style:normal;font-size:14px;letter-spacing:.3px;color:rgba(235,235,245,.55);animation:rise .7s .55s ease both;pointer-events:none}
+.splash{padding-bottom:calc(var(--sb) + 34px)!important}
 .quick .btn.cam{flex:0 0 auto;width:auto;padding-left:16px;padding-right:16px;background:rgba(255,214,106,.16);color:#ffd76a}
 .btn.gift{background:linear-gradient(135deg,rgba(255,95,168,.22),rgba(255,214,106,.18));color:#ffd76a}
 .chkRow{display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:12px 14px;min-height:48px;position:relative}
@@ -455,7 +456,7 @@ nav button{font-size:10px}
     <cite id="spAuthor"></cite>
   </div>
   <div class="spHint">Toca la pantalla para continuar ➔</div>
-  <div class="spCredit">Creada por Freddy Jara Echeverría</div>
+  <div class="spCredit">Freddy Jara Echeverría</div>
 </div>
 <div class="glow"></div>
 
