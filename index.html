@@ -77,7 +77,6 @@ main{position:relative;z-index:1;padding:calc(var(--hh, 110px) + 12px) 16px calc
   display:flex;align-items:center;justify-content:center;gap:6px}
 .seg button.on{background:#636366;color:#fff;box-shadow:0 3px 8px rgba(0,0,0,.3)}
 .dot{width:8px;height:8px;border-radius:50%;flex:none}
-.pickHint{font-size:12px;color:var(--text2);margin:8px 4px 0;text-align:center}
 
 /* calendario */
 .monthNav{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
@@ -128,13 +127,6 @@ main{position:relative;z-index:1;padding:calc(var(--hh, 110px) + 12px) 16px calc
 .sw input:checked+span::after{transform:translateX(20px)}
 
 /* slider */
-.sliderRow{padding:12px 14px}
-.sliderRow .top{display:flex;justify-content:space-between;margin-bottom:10px}
-.sliderRow .top b{font-weight:500}
-.sliderRow .top span{color:var(--emerald);font-weight:600}
-input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:4px;border-radius:2px;background:rgba(120,120,128,.4);outline:none}
-input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:28px;height:28px;border-radius:50%;background:#fff;box-shadow:0 3px 8px rgba(0,0,0,.4)}
-.sliderRow small{display:block;color:var(--text2);font-size:12px;margin-top:8px;line-height:1.4}
 
 /* stats */
 .stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
@@ -223,9 +215,6 @@ header h1 .ver{display:inline-block;font-size:.62em;font-weight:700;vertical-ali
   font-family:"New York",ui-serif,Georgia,serif}
 .splash cite{font-style:normal;font-size:15px;font-weight:600;color:#ffd76a}
 .splash cite::before{content:"— "}
-.splash .spBtn{width:100%;max-width:420px;padding:16px;border-radius:16px;font-size:17px;font-weight:600;color:#fff;
-  background:linear-gradient(135deg,#ff5fa8,#e8337f);box-shadow:0 12px 30px rgba(232,51,127,.35);animation:rise .7s .4s ease both}
-.splash .spBtn:active{transform:scale(.97)}
 .splash .spHint{color:var(--text3);font-size:12.5px;margin-top:12px;animation:rise .7s .5s ease both}
 @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 @media (max-height:760px){.splash blockquote{font-size:21px}.splash .spLogo{width:70px;height:70px}}
@@ -281,8 +270,7 @@ header h1 .ver{display:inline-block;font-size:.62em;font-weight:700;vertical-ali
 .day.hol{background:rgba(255,69,58,.1);color:rgba(255,105,97,.75)}
 .day.hol span:first-child{text-decoration:none}
 .day.hol::after{content:"";position:absolute;bottom:6px;width:4px;height:4px;border-radius:50%;background:var(--red)}
-.day .drv{position:absolute;top:4px;left:4px;width:15px;height:15px;border-radius:50%;font-size:9px;font-weight:800;line-height:15px;color:#000;text-align:center}
-.chip.lock{background:var(--blue);color:#fff;opacity:.75}
+.day .drv{position:absolute;top:3px;left:3px;width:15px;height:15px;border-radius:50%;font-size:8.5px;font-weight:800;line-height:13px;background:#1c1c1e;color:#fff;border:1.5px solid #ffd76a;text-align:center;box-shadow:0 2px 4px rgba(0,0,0,.5);z-index:2;box-sizing:border-box}
 .chip.add{background:none;border:1.5px dashed var(--text3);color:var(--blue)}
 .chip.drvOn{background:var(--orange);color:#000}
 .shareInfo{margin-top:14px;background:rgba(118,118,128,.14);border-radius:14px;padding:12px 14px;font-size:14px;line-height:1.5;color:var(--text2)}
@@ -319,7 +307,7 @@ header h1 .ver{display:inline-block;font-size:.62em;font-weight:700;vertical-ali
   .iconBtn.todayBtn{width:auto;padding:0 13px;border-radius:17px}
   .day.trip{padding-top:9px;gap:0}
   .day .pax{top:3px;right:3px;font-size:8px;line-height:12px;padding:0 3px;border-radius:5px}
-  .day .drv{top:3px;left:3px;width:12px;height:12px;line-height:12px;font-size:7.5px}
+  .day .drv{top:2px;left:2px;width:14px;height:14px;line-height:11px;font-size:7.5px;border-width:1.5px}
   .legend{margin-top:10px}
   .title{font-size:26px;margin:2px 4px 10px}
   .sectionLabel{margin:14px 6px 6px}
@@ -355,7 +343,7 @@ header h1 .ver{display:inline-block;font-size:.62em;font-weight:700;vertical-ali
   .day{font-size:17px;border-radius:13px;aspect-ratio:1/1.07}
   .day.trip{padding-top:11px}
   .day .pax{font-size:9px;line-height:14px}
-  .day .drv{width:14px;height:14px;line-height:14px;font-size:8.5px}
+  .day .drv{width:16px;height:16px;line-height:13px;font-size:8.5px;border-width:1.5px}
   .day .c{font-size:10px}
   .legend{font-size:13px}
   nav button{font-size:11px;padding:7px 0}
@@ -421,6 +409,7 @@ header h1 .ver{display:inline-block;font-size:.62em;font-weight:700;vertical-ali
 .rtSum{font-size:14px;color:var(--text2);line-height:1.5}
 .rtSum b{color:var(--text)}
 .phone{font-variant-numeric:tabular-nums}
+.linkBtn{color:var(--blue);font-size:13px;padding:0;font-weight:600}
 .syncDot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:1px;background:var(--text3)}
 .syncDot.ok{background:var(--green)} .syncDot.busy{background:#ffd76a;animation:pulse 1s infinite} .syncDot.warn{background:var(--orange)} .syncDot.err{background:var(--red)}
 #sgCode{text-transform:uppercase;font-family:ui-monospace,Menlo,monospace;letter-spacing:.5px}
@@ -440,7 +429,6 @@ nav button{font-size:10px}
 .crossNote b{color:var(--text)}
 .monthHead{display:flex;justify-content:space-between;font-size:13px;color:var(--text2);margin:14px 6px 6px}
 .monthHead b{color:var(--text);font-weight:600}
-.best{font-size:11px;font-weight:700;color:#000;background:var(--green);border-radius:6px;padding:1px 6px;margin-left:6px;vertical-align:2px}
 @media (max-width:500px){ nav button{font-size:9.5px} nav button svg{width:22px;height:22px} }
 .rowBtn:active{background:rgba(255,255,255,.04)}
 </style>
@@ -448,7 +436,7 @@ nav button{font-size:10px}
 <body>
 <div class="splash" id="splash" role="dialog" aria-modal="true" aria-label="Bienvenida">
   <div id="spLogo"></div>
-  <h2>Bienvenido a <span>MoneyPetrol 3.0</span></h2>
+  <h2>Bienvenido a <span>MoneyPetrol 3.1</span></h2>
   <div class="spDate" id="spDate"></div>
   <div class="spQuote">
     <div class="mark" aria-hidden="true">“</div>
@@ -477,7 +465,7 @@ nav button{font-size:10px}
     <path d="M186 262 l10 26 l26 10 l-26 10 l-10 26 l-10 -26 l-26 -10 l26 -10z" fill="#3a0a20" opacity=".8"/>
   </svg>
   <div>
-    <h1>MoneyPetrol <span class="ver">3.0</span></h1>
+    <h1>MoneyPetrol <span class="ver">3.1</span></h1>
     <div class="sub">Casasimarro · Gasto Gasoil</div>
   </div>
   <div class="hTotal"><b class="num" id="hTotal">0,00 €</b><span id="hMonth"></span></div>
@@ -570,7 +558,7 @@ nav button{font-size:10px}
     <div id="stationsWrap"><div class="sectionLabel">Gasolineras</div><div class="list" id="stationList"></div></div>
     <div class="sectionLabel">Historial</div>
     <div id="tkHistory"></div>
-    <div class="foot">Cada ticket actualiza el precio del gasoil de la app. Si hay viajes anteriores con otro precio, te preguntará si quieres aplicarlo (nunca a los viajes en los que cambiaste el precio a mano).</div>
+    <div class="foot">El precio de cada ticket se aplica solo a los viajes que conduce quien lo sube, desde la fecha del ticket hasta su siguiente repostaje. Los viajes con el precio puesto a mano no cambian.</div>
   </section>
 
   <!-- BALANCES / TRICOUNT -->
@@ -598,7 +586,7 @@ nav button{font-size:10px}
       <button class="paidBtn" id="addPerson">Añadir</button>
     </div></div>
     <div class="list" id="notifyPromo" style="margin-top:14px" hidden><button class="row rowBtn" id="notifyPromoBtn"><div class="ico" style="background:#ff375f">🔔</div><div class="l"><b>Avisarme a fin de mes</b><small>Recordatorio para revisar saldos y pedir los Bizum</small></div><span class="v">›</span></button></div>
-    <div style="margin-top:14px"><button class="btn" id="waCopy">💬 Copiar resumen para WhatsApp</button></div>
+    <div style="margin-top:14px"><button class="btn" id="pdfExportBtn">📄 Descargar Cierre Mensual (PDF)</button></div>
     <div style="margin-top:10px"><button class="btn ghost" id="shareTri">Compartir…</button></div>
     <div class="foot">En cada viaje, el gasoil lo pone quien conduce y se reparte a partes iguales entre quienes iban. Las transferencias sugeridas saldan todas las cuentas con el menor número de pagos. Toca un nombre para cambiarlo.</div>
   </section>
@@ -613,9 +601,13 @@ nav button{font-size:10px}
 
     <div class="sectionLabel">Combustible</div>
     <div class="list">
-      <div class="row"><div class="ico" style="background:#ff9f0a">⛽</div><div class="l"><b>Precio gasoil</b><small>Se aplica a los viajes nuevos</small></div><input type="text" class="numIn" inputmode="decimal" id="sPrice"><span class="v">€/L</span></div>
-      <div class="row"><div class="ico" style="background:#30d158">🚗</div><div class="l"><b>Consumo medio</b><small>En carretera</small></div><input type="text" class="numIn" inputmode="decimal" id="sCons"><span class="v">L/100</span></div>
+      <div class="row"><div class="ico" style="background:#ff9f0a">⛽</div><div class="l"><b>Precio de referencia</b><small>Para quien aún no tiene ticket ni precio propio</small></div><input type="text" class="numIn" inputmode="decimal" id="sPrice"><span class="v">€/L</span></div>
+      <div class="row"><div class="ico" style="background:#30d158">🚗</div><div class="l"><b>Consumo de referencia</b><small>Para quien no ha puesto el de su coche</small></div><input type="text" class="numIn" inputmode="decimal" id="sCons"><span class="v">L/100</span></div>
     </div>
+
+    <div class="sectionLabel">🚗 Coche y gasoil de cada integrante</div>
+    <div class="list" id="carList"></div>
+    <div class="foot" style="margin-top:8px;text-align:left;padding:0 6px">Toca a una persona para poner el consumo de su coche o su precio del gasoil. El precio se actualiza solo cada vez que sube un ticket.</div>
 
     <div class="sectionLabel">Margen urbano / ajuste real</div>
     <div class="list">
@@ -674,7 +666,7 @@ nav button{font-size:10px}
     <div class="sectionLabel">Configuración inicial</div>
     <button class="btn ghost" id="redoOb">Repetir cuestionario</button>
     <div style="margin-top:10px"><button class="btn danger" id="resetBtn">Borrar todos los datos</button></div>
-    <div class="foot">Los datos se guardan solo en este iPhone.<br>Exporta una copia de vez en cuando.<br>MoneyPetrol 3.0</div>
+    <div class="foot">Los datos se guardan solo en este iPhone.<br>Exporta una copia de vez en cuando.<br>MoneyPetrol 3.1</div>
   </section>
 </main>
 
@@ -696,7 +688,7 @@ nav button{font-size:10px}
   <div class="seg" id="shDest"></div>
   <div class="costBox"><div><small>Coste del viaje</small><b class="num" id="shCost"></b></div><div style="text-align:right"><small class="num" id="shDetail"></small></div></div>
   <div class="list" style="margin-bottom:6px">
-    <div class="row"><div class="l"><b>Precio ese día</b></div><input type="text" class="numIn" inputmode="decimal" id="shPrice"><span class="v">€/L</span></div>
+    <div class="row"><div class="l"><b>Precio ese día</b><small id="shPriceSrc"></small></div><input type="text" class="numIn" inputmode="decimal" id="shPrice"><span class="v">€/L</span></div>
   </div>
   <div class="sectionLabel">¿Quién iba en el coche?</div>
   <div class="chips" id="shPax"></div>
@@ -758,17 +750,16 @@ nav button{font-size:10px}
     <div class="field"><label for="mbName">Nombre</label><input type="text" id="mbName" maxlength="24"></div>
     <div class="field"><label for="mbPhone">Teléfono Bizum</label><input type="tel" inputmode="tel" id="mbPhone" class="phone" placeholder="600 000 000" autocomplete="off"></div>
   </div>
+  <div class="sectionLabel">🚗 Su coche</div>
+  <div class="list">
+    <div class="field"><label for="mbCons">Consumo</label><input type="text" inputmode="decimal" id="mbCons" autocomplete="off"><span class="u">L/100</span></div>
+    <div class="field"><label for="mbPrice">Precio gasoil</label><input type="text" inputmode="decimal" id="mbPrice" autocomplete="off"><span class="u">€/L</span></div>
+  </div>
+  <div class="foot" id="mbCarInfo" style="margin-top:8px;text-align:left;padding:0 6px"></div>
   <div class="obErr" id="mbErr"></div>
   <div class="btnRow" style="margin-top:6px"><button class="btn danger" id="mbDel">Eliminar</button><button class="btn" id="mbSave">Guardar</button></div>
 </div>
 
-<!-- hoja: aplicar el precio de un ticket a viajes anteriores -->
-<div class="sheet" id="priceSheet">
-  <div class="grab"></div>
-  <div class="title2">⛽ ¿Actualizar viajes anteriores?</div>
-  <div class="shSub" id="psText"></div>
-  <div id="psBtns"></div>
-</div>
 
 <!-- hoja: unirse a un grupo (¿quién eres?) -->
 <div class="sheet" id="groupWhoSheet">
@@ -906,7 +897,9 @@ function migrate(d){
   if(d.askedName) o.askedName = true;
   // --- 3.0: teléfonos Bizum, viajes automáticos, rutina, días sin viaje y avisos ---
   const rawById = {}; rawM.forEach(m=>{ if(isObj(m) && okId(m.id)) rawById[m.id]=m; });
-  o.members.forEach(m=>{ const ph = String(rawById[m.id]?.phone||'').replace(/\D/g,''); if(/^\d{9}$/.test(ph)) m.phone = ph; });
+  o.members.forEach(m=>{ const r0 = rawById[m.id]||{}, ph = String(r0.phone||'').replace(/\D/g,''); if(/^\d{9}$/.test(ph)) m.phone = ph;
+    const c = pos(r0.cons, 0, 1, 30); if(c) m.cons = c;                                   // consumo de su coche
+    const pr = pos(r0.price, 0, 0.3, 5); if(pr && okDate(r0.priceFrom)){ m.price = pr; m.priceFrom = r0.priceFrom; } });   // precio manual
   for(const [k,t0] of Object.entries(isObj(d.trips)?d.trips:{})) if(o.trips[k] && (t0.auto===true || t0.isAutoGenerated===true)) o.trips[k].auto = true;
   const r = isObj(d.routine) ? d.routine : null;
   if(r){
@@ -952,14 +945,16 @@ const isWeekend = k => { const [y,m,d]=k.split('-').map(Number); const w=new Dat
 const noClass = k => HOLIDAYS[k] ? `${HOLIDAYS[k]}: no hay clase` : isWeekend(k) ? 'Fin de semana: no hay clase' : null;
 
 /* ---------- cálculo del viaje ---------- */
+// Consumo del coche de un integrante (el suyo o, si no lo ha puesto, el de referencia de Ajustes)
+const consOf = id => { const m = id && member(id); return m && m.cons > 0 ? m.cons : S.settings.cons; };
 function calc(trip){
   const d = S.dest[trip.dest] || S.dest.roda;
   const km = d.km * (1 + KM_MARGIN/100);
-  const liters = km * S.settings.cons/100 * (1 + CONS_MARGIN/100);
+  const liters = km * consOf(trip.driver)/100 * (1 + CONS_MARGIN/100);
   const price = trip.price ?? S.settings.price;
   return { km, liters, cost: liters*price, price };
 }
-const litersPerTrip = dest => calc({dest, price:1}).liters;
+const litersPerTrip = (dest, driver) => calc({dest, price:1, driver}).liters;
 function monthTrips(y,m){ const p = monthKey(y,m)+'-'; return Object.entries(S.trips).filter(([k])=>k.startsWith(p)); }
 function monthStats(y,m){
   const r = { n:0, km:0, liters:0, cost:0, by:{}, costBy:{} };
@@ -1058,7 +1053,7 @@ function renderCal(){
       cls += ' trip ' + t.dest;
       inner += `<span class="c num">${fmt(sp.cost,2)}€</span>`;
       if(sp.occ.length>1) inner += `<span class="pax">${sp.occ.length}</span>`;
-      if(sp.driver && !isMe(sp.driver)) inner += `<span class="drv" style="background:${colorOf(sp.driver)}">${esc(initial(sp.driver))}</span>`;
+      if(sp.driver && !isMe(sp.driver)) inner += `<span class="drv" aria-label="conduce ${esc(nameOf(sp.driver))}">${esc(initial(sp.driver))}</span>`;
       if(t.auto) inner += '<span class="auto" aria-label="automático">⚡</span>';
     }
     h += `<button class="${cls}" data-k="${k}"${HOLIDAYS[k]?` aria-label="${d}: ${esc(HOLIDAYS[k])}"`:''}>${inner}</button>`;
@@ -1132,7 +1127,8 @@ function openSheet(k){
     const rt = S.routine?.enabled ? S.routine : null;
     const last = rt || lastTripBefore(k);            // con rutina: la rutina; si no, el último viaje
     const occ = last ? last.occ.filter(member) : [S.owner];
-    draft = { dest: rt ? rt.dest : S.settings.pick, price:priceOn(k), occ: occ.length?occ:[S.owner], driver: last && occ.includes(last.driver) ? last.driver : (occ[0]||S.owner) };
+    draft = { dest: rt ? rt.dest : S.settings.pick, price:null, occ: occ.length?occ:[S.owner], driver: last && occ.includes(last.driver) ? last.driver : (occ[0]||S.owner) };
+    draft.price = priceOn(k, draft.driver);
   } else draft = JSON.parse(JSON.stringify(S.trips[k]));
   const [y,mo,d] = k.split('-').map(Number);
   $('shDate').textContent = longDate(new Date(y,mo-1,d));
@@ -1140,17 +1136,26 @@ function openSheet(k){
   $('shPrice').value = String(draft.price ?? S.settings.price).replace('.',',');
   $('shDelete').textContent = isNew ? 'Cancelar' : (S.routine?.enabled || draft.auto) ? '🚫 No hubo viaje' : 'Borrar viaje';
   $('shSave').textContent = isNew ? 'Guardar viaje' : 'Guardar';
-  renderSheet(); showSheet('sheet');
+  shDrv = null; renderSheet(); showSheet('sheet');
 }
+let shDrv = null;
 function renderSheet(){
   const t = draft; if(!t) return;
   t.occ = t.occ.filter(member);
   if(!t.occ.includes(t.driver)) t.driver = t.occ[0];
+  // si cambia el conductor (a mano o al quitarlo del coche): precio de su último ticket, salvo precio manual
+  if(t.driver !== shDrv){
+    if(shDrv !== null && t.driver && !t.priceManual){ t.price = priceOn(shKey, t.driver); $('shPrice').value = String(t.price).replace('.',','); }
+    shDrv = t.driver;
+  }
+  $('shPriceSrc').innerHTML = !t.driver ? '' : t.priceManual
+    ? `Puesto a mano · <button class="linkBtn" data-autoprice="1">usar el de ${esc(nameOf(t.driver))}</button>`
+    : Math.abs((t.price ?? 0) - priceOn(shKey, t.driver)) < 0.0005 ? esc(priceSource(shKey, t.driver)) : 'Precio guardado del viaje';
   $('shDest').innerHTML = Object.entries(S.dest).map(([k,d]) =>
     `<button data-k="${k}" class="${t.dest===k?'on':''}"><span class="dot" style="background:${d.color}"></span>${esc(d.name)}</button>`).join('');
   const c = calc(t), sp = tripSplit(t);
   $('shCost').textContent = eur(c.cost);
-  $('shDetail').innerHTML = `${fmt(c.km)} km<br>${fmt(c.liters,2)} L`;
+  $('shDetail').innerHTML = `${fmt(c.km)} km · ${fmt(c.liters,2)} L<br>${fmt(consOf(t.driver),1)} L/100 · coche de ${esc(nameOf(t.driver))}`;
   $('shPax').innerHTML = S.members.map(p=>`<button class="chip ${t.occ.includes(p.id)?'on':''} ${isMe(p.id)?'me':''}" data-id="${p.id}">${esc(p.name)}</button>`).join('')
     + `<button class="chip add" data-add="1">+ Añadir</button>`;
   $('shDriver').innerHTML = sp.occ.length ? sp.occ.map(id=>`<button class="chip ${sp.driver===id?'drvOn':''}" data-drv="${id}">🚗 ${esc(nameOf(id))}</button>`).join('')
@@ -1176,6 +1181,11 @@ $('shPax').addEventListener('click', e=>{
   buzz(); renderSheet();
 });
 $('shDriver').addEventListener('click', e=>{ const b=e.target.closest('[data-drv]'); if(!b) return; draft.driver=b.dataset.drv; buzz(); renderSheet(); });
+$('shPriceSrc').addEventListener('click', e=>{
+  if(!e.target.closest('[data-autoprice]')) return;
+  delete draft.priceManual; draft.price = priceOn(shKey, draft.driver);
+  $('shPrice').value = String(draft.price).replace('.',','); buzz(); renderSheet();
+});
 $('shPrice').addEventListener('input', e=>{ const v=num(e.target.value); if(v>0.3 && v<5){ draft.price=v; draft.priceManual=true; renderSheet(); } });
 $('shSave').onclick = ()=>{
   if(!draft.occ.length) return;
@@ -1220,7 +1230,7 @@ function renderSum(){
   $('yearStats').innerHTML = `<div class="stat"><small>Total ${y}</small><b class="num" style="color:var(--emerald)">${eur(yc)}</b></div>
     <div class="stat"><small>Viajes · km</small><b class="num">${yn}<i>· ${fmt(yk,0)} km</i></b></div>`;
   const s = S.settings;
-  $('formula').innerHTML = `Km base × 1,10 (margen urbano) × ${fmt(s.cons)} L/100 km × 1,05 (tráfico) × precio del gasoil ese día.<br>Hoy: La Roda ${eur(calc({dest:'roda'}).cost)} · Motilla ${eur(calc({dest:'motilla'}).cost)} por viaje.`;
+  $('formula').innerHTML = `Km base × 1,10 (margen urbano) × consumo del coche de quien conduce (L/100 km) × 1,05 (tráfico) × su precio del gasoil ese día.<br>Hoy: La Roda ${eur(calc({dest:'roda'}).cost)} · Motilla ${eur(calc({dest:'motilla'}).cost)} por viaje.`;
 }
 $('sPrev').onclick=()=>{ stepMonth(sumCur,-1); renderSum(); };
 $('sNext').onclick=()=>{ stepMonth(sumCur,1); renderSum(); };
@@ -1228,52 +1238,46 @@ $('sNext').onclick=()=>{ stepMonth(sumCur,1); renderSum(); };
 /* ---------- tickets: datos cruzados ---------- */
 const byDate = (a,b)=>(a.fecha||'').localeCompare(b.fecha||'') || (a.id||'').localeCompare(b.id||'');
 const ticketsSorted = () => [...S.refuels].filter(r=>r.fecha && r.precio_litro>0).sort(byDate);
-// precio del gasoil en una fecha = el del último ticket de ese día o anterior
-function priceOn(k){
-  const tk = ticketsSorted();
-  if(!tk.length || k >= tk[tk.length-1].fecha) return S.settings.price;   // después del último ticket: precio actual de la app
+// Precio del gasoil de cada integrante a lo largo del tiempo: sus tickets y, si lo puso a mano,
+// su precio manual desde el día en que lo puso. Manda el más reciente (un ticket nuevo lo sustituye).
+function priceEvents(driver){
+  const m = member(driver);
+  const ev = ticketsSorted().filter(r=>r.by===driver).map(r=>({ fecha:r.fecha, p:r.precio_litro, src:'ticket' }));
+  if(m && m.price > 0 && m.priceFrom) ev.push({ fecha:m.priceFrom, p:m.price, src:'manual' });
+  return ev.sort((a,b)=> a.fecha.localeCompare(b.fecha) || (a.src==='manual') - (b.src==='manual'));
+}
+const lastEvent = (driver, k) => { let e = null; for(const x of priceEvents(driver)){ if(x.fecha<=k) e = x; else break; } return e; };
+// Precio de un viaje: el del conductor en esa fecha; si aún no tiene ninguno, el último ticket
+// del grupo; y si no hay tickets, el precio de referencia de Ajustes.
+function priceOn(k, driver){
+  const e = driver ? lastEvent(driver, k) : null;
+  if(e) return e.p;
+  const all = ticketsSorted();
+  if(!all.length || k >= all[all.length-1].fecha) return S.settings.price;
   let p = null;
-  for(const r of tk){ if(r.fecha<=k) p = r.precio_litro; else break; }
+  for(const r of all){ if(r.fecha<=k) p = r.precio_litro; else break; }
   return p ?? S.settings.price;
 }
-// Reaplica precios: la app usa el del ticket más reciente y cada viaje (no editado a mano)
-// toma el del último ticket anterior o del mismo día. Devuelve cuántos viajes cambiaron.
-// Viajes afectados por un ticket: desde su fecha hasta el siguiente ticket (no editados a mano)
-function ticketRange(rec){
-  const tk = ticketsSorted(), next = tk.find(r=>r.fecha > rec.fecha);
-  return Object.entries(S.trips).filter(([k,t])=> k>=rec.fecha && (!next || k<next.fecha) && !t.priceManual && Math.abs((t.price??0)-rec.precio_litro)>0.0005);
-}
-function syncAppPrice(){ const tk = ticketsSorted(); if(tk.length) S.settings.price = +tk[tk.length-1].precio_litro.toFixed(3); }
-function askApplyPrice(rec){
-  const all = ticketRange(rec), autos = all.filter(([,t])=>t.auto);
-  if(!all.length) return;
-  const nx = ticketsSorted().find(r=>r.fecha > rec.fecha);
-  const dd = f => f.split('-').reverse().slice(0,2).join('/');
-  $('psText').innerHTML = `El ticket del <b>${dd(rec.fecha)}</b> tiene un precio de <b>${fmt(rec.precio_litro,3)} €/L</b>. Hay <b>${all.length}</b> ${all.length===1?'viaje':'viajes'} desde esa fecha${nx?` hasta el ${dd(nx.fecha)}`:''} con otro precio${autos.length?` (${autos.length} automáticos ⚡)`:''}.<br><br>Si lo aplicas, cambiarán los importes de esos días en Balances.`;
-  $('psBtns').innerHTML = (autos.length ? `<button class="btn bolt" data-ps="auto">⚡ Aplicar a los automáticos (${autos.length})</button><div style="height:10px"></div>` : '')
-    + (autos.length!==all.length || !autos.length ? `<button class="btn" data-ps="all">Aplicar a todos (${all.length})</button><div style="height:10px"></div>` : '')
-    + `<button class="btn ghost" data-ps="no">No, dejar los precios como están</button>`;
-  $('psBtns').onclick = e=>{
-    const b = e.target.closest('[data-ps]'); if(!b) return;
-    const list = b.dataset.ps==='auto' ? autos : b.dataset.ps==='all' ? all : [];
-    list.forEach(([,t])=> t.price = rec.precio_litro);
-    save(); hideSheets(); renderAll(); buzz();
-    toast(list.length ? `${list.length} ${list.length===1?'viaje actualizado':'viajes actualizados'} a ${fmt(rec.precio_litro,3)} €/L` : 'Precios de los viajes sin cambios');
-  };
-  showSheet('priceSheet');
-}
-function applyTicketPrices(){
-  const tk = ticketsSorted(); if(!tk.length) return 0;
-  S.settings.price = +tk[tk.length-1].precio_litro.toFixed(3);
+// Aplica, sin preguntar, el precio del conductor a sus viajes (desde su primer ticket o precio manual).
+// Los viajes con precio puesto a mano en el propio viaje no se tocan nunca.
+function recomputeDriverPrices(driver){
+  const ev = priceEvents(driver); if(!ev.length) return 0;
   let n = 0;
   for(const [k,t] of Object.entries(S.trips)){
-    if(t.priceManual || k < tk[0].fecha) continue;
-    let p = null;
-    for(const r of tk){ if(r.fecha<=k) p = r.precio_litro; else break; }
-    if(p!==null && Math.abs((t.price??0)-p) > 0.0005){ t.price = p; n++; }
+    if(t.driver!==driver || t.priceManual || k < ev[0].fecha) continue;
+    const p = priceOn(k, driver);
+    if(Math.abs((t.price ?? 0) - p) > 0.0005){ t.price = p; n++; }
   }
   return n;
 }
+// De dónde sale el precio (texto para la hoja del viaje y Ajustes)
+function priceSource(k, driver){
+  const e = lastEvent(driver, k), dd = f => f.split('-').reverse().slice(0,2).join('/');
+  if(e) return e.src==='ticket' ? `Último ticket de ${nameOf(driver)} · ${dd(e.fecha)}` : `Precio de ${nameOf(driver)} puesto a mano · ${dd(e.fecha)}`;
+  if(ticketsSorted().some(r=>r.fecha<=k)) return `${nameOf(driver)} aún no tiene tickets: último del grupo`;
+  return 'Precio de referencia de Ajustes';
+}
+function syncAppPrice(){ const tk = ticketsSorted(); if(tk.length) S.settings.price = +tk[tk.length-1].precio_litro.toFixed(3); }
 
 let fuCur = { ...cur };
 function renderFuel(){
@@ -1340,7 +1344,7 @@ function renderFuel(){
     return `<div class="monthHead"><span>${MONTHS[gm-1]} ${gy}</span><b class="num">${eur(list.reduce((a,r)=>a+r.total_euros,0))}</b></div>
       <div class="list">${list.map(r=>`<button class="row rowBtn" data-tk="${r.id}">
         ${r.thumb?`<img class="thumb" src="${r.thumb}" alt="">`:'<div class="thumb">⛽</div>'}
-        <div class="l"><b>${esc(r.gasolinera||'Repostaje')}</b><small>${r.fecha.split('-').reverse().join('/')} · ${fmt(r.litros,2)} L · ${fmt(r.precio_litro,3)} €/L</small></div>
+        <div class="l"><b>${esc(r.gasolinera||'Repostaje')}</b><small>${r.fecha.split('-').reverse().join('/')} · ${esc(nameOf(r.by))} · ${fmt(r.litros,2)} L · ${fmt(r.precio_litro,3)} €/L</small></div>
         <div class="owed"><b class="num">${eur(r.total_euros)}</b></div></button>`).join('')}</div>`;
   }).join('') : '<div class="list"><div class="empty-msg">Aún no hay tickets. Pulsa «Hacer foto» y apunta la cámara al ticket de la gasolinera.</div></div>';
 }
@@ -1483,11 +1487,11 @@ Usa punto como separador decimal. Si un dato no aparece, pon null.`;
         lastErr = e;
         if(!e.retry && !e.nextModel) throw e;                    // API Key mala, etc.: no tiene sentido insistir
         if(e.nextModel && !e.retry) break;                        // modelo inexistente: probar el siguiente
-        if(attempt===1 && !/límite/.test(e.message)){ onStatus('Google está saturado, reintentando...'); await sleep(2500); }
+        if(attempt===1 && !/límite/.test(e.message)){ onStatus('Estamos trabajando en ello…'); await sleep(2500); }
         else break;
       }
     }
-    if(mi < models.length-1) onStatus('Probando con otro modelo de IA...');
+    if(mi < models.length-1) onStatus('Estamos trabajando en ello…');
   }
   if(!data) throw lastErr || apiError('no se ha podido leer el ticket', true);
   const text = (data.candidates?.[0]?.content?.parts||[]).filter(p=>!p.thought).map(p=>p.text||'').join('');
@@ -1534,7 +1538,7 @@ function openFuel(d, thumb, sub, err, editId=null, preview=null, canRetry=false)
 function updAuton(){
   const L = num($('fuL')?.value), sta = $('fuSta')?.value.trim() || 'la gasolinera';
   if(!(L>0)){ $('fuAuto').innerHTML = 'Introduce los litros para calcular la autonomía.'; return; }
-  const N = Math.floor(L / litersPerTrip('roda')), M = Math.floor(L / litersPerTrip('motilla'));
+  const N = Math.floor(L / litersPerTrip('roda', S.owner)), M = Math.floor(L / litersPerTrip('motilla', S.owner));   // con el consumo de tu coche
   $('fuAuto').innerHTML = `Con este repostaje de <b>${fmt(L,2)} litros</b> en <b>${esc(sta)}</b> tienes combustible estimado para <b>${N} viajes completos</b> al IES Doctor Alarcón Santón (La Roda).<br>O para <b>${M} viajes completos</b> al IES Jorge Manrique (Motilla del Palancar).`;
 }
 $('fuBody').addEventListener('input', e=>{ if(['fuL','fuSta'].includes(e.target.id)) updAuton(); });
@@ -1543,29 +1547,33 @@ $('fuBody').addEventListener('click', e=>{
   if(e.target.id==='fuRetry'){ buzz(); runScan(); return; }
   if(e.target.id==='fuDel'){
     if(!confirm('¿Borrar este ticket?')) return;
+    const gone = S.refuels.find(r=>r.id===fuelDraft.editId);
     S.refuels = S.refuels.filter(r=>r.id!==fuelDraft.editId);
-    syncAppPrice(); save(); hideSheets(); fuelDraft=null; renderAll();
-    toast('Ticket borrado · los precios de los viajes no cambian'); return;
+    syncAppPrice(); const n = gone ? recomputeDriverPrices(gone.by) : 0;
+    save(); hideSheets(); fuelDraft=null; renderAll();
+    toast(`Ticket borrado${n ? ` · ${n} ${n===1?'viaje recalculado':'viajes recalculados'}` : ''}`); return;
   }
   if(e.target.id!=='fuSave') return;
   const L=num($('fuL').value), P=num($('fuP').value), T=num($('fuT').value), F=$('fuDate').value;
   if(!(L>0) || !(P>0.3 && P<5)){ $('fuErr').textContent='Revisa los litros y el precio por litro.'; return; }
   if(!/^\d{4}-\d{2}-\d{2}$/.test(F)){ $('fuErr').textContent='Revisa la fecha del ticket.'; return; }
-  const rec = { fecha:F, litros:+L.toFixed(2), precio_litro:+P.toFixed(3), total_euros: T>0?+T.toFixed(2):+(L*P).toFixed(2), gasolinera:$('fuSta').value.trim() };
+  const prev = fuelDraft?.editId ? S.refuels.find(r=>r.id===fuelDraft.editId) : null;
+  const by = prev?.by && member(prev.by) ? prev.by : S.owner;          // el ticket es de quien lo sube
+  const rec = { fecha:F, litros:+L.toFixed(2), precio_litro:+P.toFixed(3), total_euros: T>0?+T.toFixed(2):+(L*P).toFixed(2), gasolinera:$('fuSta').value.trim(), by };
   let saved;
   if(fuelDraft?.editId){
     saved = Object.assign(S.refuels.find(r=>r.id===fuelDraft.editId), rec);
   } else {
     const dup = S.refuels.find(r=>r.fecha===rec.fecha && Math.abs(r.total_euros-rec.total_euros)<0.01);
     if(dup && !confirm('Ya hay un ticket con la misma fecha e importe. ¿Guardarlo igualmente?')) return;
-    saved = { id:uid('r'), ...rec, thumb:fuelDraft?.thumb||null, by:S.owner };
+    saved = { id:uid('r'), ...rec, thumb:fuelDraft?.thumb||null };
     S.refuels.push(saved);
   }
-  const before = S.settings.price;
   syncAppPrice();
+  const mb = member(by); if(mb && !prev){ delete mb.price; delete mb.priceFrom; }   // un ticket nuevo sustituye al precio puesto a mano
+  const n = recomputeDriverPrices(by);                   // automático: solo los viajes que conduce quien repostó
   save(); hideSheets(); fuelDraft=null; buzz(); renderAll();
-  toast(`Ticket guardado${Math.abs(before - S.settings.price) > 0.0005 ? ` · precio ${fmt(S.settings.price,3)} €/L` : ''}`);
-  setTimeout(()=>askApplyPrice(saved), 450);            // recálculo retroactivo: siempre preguntando
+  toast(`Ticket guardado · ${fmt(rec.precio_litro,3)} €/L${n ? ` · ${n} ${n===1?'viaje':'viajes'} de ${nameOf(by)} actualizado${n===1?'':'s'}` : ''}`);
 });
 
 /* ---------- balances / tricount ---------- */
@@ -1603,7 +1611,7 @@ $('debtList').addEventListener('click', e=>{
   const mk = monthKey(triCur.y,triCur.m); S.paid[mk] ||= {};
   const tr = monthBalance(triCur.y,triCur.m).transfers.find(x=>x.from+'>'+x.to===pay.dataset.pay);
   if(tr?.paid) delete S.paid[mk][pay.dataset.pay]; else if(tr) S.paid[mk][pay.dataset.pay] = +tr.amount.toFixed(2);
-  save(); buzz(); renderTri(); renderHeader();
+  save(); buzz(); renderTri(); renderHeader(); checkMonthEnd();   // actualiza al momento el globo del icono
 });
 $('bonusList').addEventListener('click', e=>{
   const d = e.target.closest('[data-bdel]'); if(!d) return;
@@ -1683,6 +1691,11 @@ function renderSet(){
   $('ownerPick').innerHTML = S.members.map(p=>`<button class="chip ${isMe(p.id)?'on':''}" data-owner="${p.id}">${esc(p.name)}</button>`).join('');
   $('sPrice').value = String(s.price).replace('.',','); $('sCons').value = String(s.cons).replace('.',','); $('sDriver').checked = s.driverPays;
   $('sKey').value = aiKey(); $('sModel').value = s.model || DEFAULT_MODEL;
+  $('carList').innerHTML = S.members.map(p=>{
+    const e = lastEvent(p.id, todayKey()), pr = priceOn(todayKey(), p.id);
+    const src = e ? (e.src==='ticket' ? `ticket ${e.fecha.split('-').reverse().slice(0,2).join('/')}` : 'a mano') : 'referencia';
+    return `<button class="row rowBtn" data-car="${p.id}">${av(p.id)}<div class="l"><b>${who(p.id)}</b><small>${fmt(consOf(p.id),1)} L/100 ${p.cons>0?'(su coche)':'(referencia)'} · ${fmt(pr,3)} €/L (${src})</small></div><span class="v">›</span></button>`;
+  }).join('');
   const rt = S.routine;
   $('sAuto').checked = !!rt?.enabled;
   $('rtSum').innerHTML = rt ? `Rutina: <b>${esc(S.dest[rt.dest].name)}</b> · conduce <b>${esc(nameOf(rt.driver))}</b> · van <b>${rt.occ.map(nameOf).map(esc).join(', ')}</b>.<br>Los días lectivos (L–V, sin festivos) se rellenan solos al abrir la app. Toca un día para cambiarlo o marcar que no hubo viaje.`
@@ -1694,6 +1707,7 @@ function renderSet(){
   $('destSettings').innerHTML = Object.entries(S.dest).map(([k,d])=>
     `<div class="row"><div class="ico" style="background:${d.color};color:#000">🏫</div><div class="l"><b>${esc(d.full)}</b><small>${esc(d.town)}</small></div><input type="text" class="numIn" inputmode="decimal" data-km="${k}" value="${String(d.km).replace('.',',')}"><span class="v">km</span></div>`).join('');
 }
+$('carList').addEventListener('click', e=>{ const b = e.target.closest('[data-car]'); if(b) openMember(b.dataset.car); });
 $('ownerPick').addEventListener('click', e=>{
   const b = e.target.closest('[data-owner]'); if(!b) return;
   S.owner = b.dataset.owner; save(); buzz(); renderAll(); toast(`Ahora usas la app como ${nameOf(S.owner)}`);
@@ -1709,7 +1723,7 @@ $('sModel').addEventListener('change', e=>{ S.settings.model = e.target.value.tr
 
 /* ---------- copias de seguridad universales ---------- */
 $('exportBtn').onclick = async ()=>{
-  const payload = { app:'MoneyPetrol', version:'3.0', exportedAt:new Date().toISOString(), exportedBy:meName(), data:S };
+  const payload = { app:'MoneyPetrol', version:'3.1', exportedAt:new Date().toISOString(), exportedBy:meName(), data:S };
   const file = new File([JSON.stringify(payload,null,2)], `moneypetrol-${keyOf(now.getFullYear(),now.getMonth(),now.getDate())}-${meName().toLowerCase().replace(/[^a-z0-9]+/gi,'')||'copia'}.json`, {type:'application/json'});
   try{ if(navigator.canShare && navigator.canShare({files:[file]})){ await navigator.share({ files:[file], title:'Copia MoneyPetrol' }); return; } }
   catch(e){ if(e.name==='AbortError') return; }
@@ -1786,7 +1800,7 @@ function renderOb(){
   let h = '';
   if(obStep===0){
     h = `${document.querySelector('header svg').outerHTML.replace('<svg','<svg class="obLogo"')}
-      <h2>Configura MoneyPetrol 3.0</h2>
+      <h2>Configura MoneyPetrol 3.1</h2>
       <p>Cuatro preguntas rápidas para calcular lo que cuesta de verdad cada viaje desde Casasimarro. Podrás cambiarlo después en Ajustes.</p>`;
   } else if(obStep===1){
     h = `<h2>¿Cómo te llamas?</h2><p>Así sabrás quién debe a quién cuando compartas coche y copias de seguridad con tu grupo.</p>
@@ -1838,7 +1852,7 @@ $('obNext').onclick = ()=>{
   if(obStep===3){ const v=num(obD.price); if(!(v>0.5 && v<5)){ $('obErr').textContent='Escribe un precio entre 0,50 y 5,00 €/L.'; return; } obD.price=v; }
   if(obStep===4){ const v=num(obD.cons); if(!(v>=2 && v<=20)){ $('obErr').textContent='Escribe un consumo entre 2 y 20 L/100 km.'; return; } obD.cons=v; }
   if(obStep < OB_STEPS-1){ obStep++; renderOb(); buzz(); return; }
-  member(S.owner).name = obD.name;
+  member(S.owner).name = obD.name; member(S.owner).cons = +num(obD.cons).toFixed(2);
   S.settings.pick = obD.pick; S.settings.price = obD.price; S.settings.cons = obD.cons; S.setupDone = true; save();
   $('ob').classList.remove('on'); renderAll(); buzz(); toast(`¡Listo, ${obD.name}! Pulsa un día para registrar un viaje`);
   setTimeout(checkClose, 600);
@@ -1974,7 +1988,7 @@ function lazyFill(){
   if(k < addDays(today, -120)) k = addDays(today, -120);                              // como mucho, 4 meses atrás
   while(k <= today && guard++ < 200){
     if(!noClass(k) && !S.trips[k] && !S.skips[k]){
-      S.trips[k] = { dest:r.dest, price:priceOn(k), occ:[...occ], driver:r.driver, auto:true }; n++;
+      S.trips[k] = { dest:r.dest, price:priceOn(k, r.driver), occ:[...occ], driver:r.driver, auto:true }; n++;
     }
     k = addDays(k, 1);
   }
@@ -2014,6 +2028,10 @@ function openMember(id){
   const p = member(id); if(!p) return; mbId = id;
   $('mbTitle').textContent = isMe(id) ? 'Tus datos' : p.name;
   $('mbName').value = p.name; $('mbPhone').value = fmtPhone(p.phone||''); $('mbErr').textContent = '';
+  const dc = v => String(v).replace('.',','), today = todayKey(), e = lastEvent(id, today);
+  $('mbCons').value = p.cons > 0 ? dc(p.cons) : ''; $('mbCons').placeholder = `${dc(S.settings.cons)} (referencia)`;
+  $('mbPrice').value = e ? dc(e.p) : ''; $('mbPrice').placeholder = `${dc(priceOn(today, id))} (referencia)`;
+  $('mbCarInfo').innerHTML = `${p.cons>0 ? 'Consumo de su coche.' : 'Sin consumo propio: se usa el de referencia de Ajustes.'} ${e ? (e.src==='ticket' ? `Precio de su último ticket (${e.fecha.split('-').reverse().slice(0,2).join('/')}).` : 'Precio puesto a mano; su próximo ticket lo sustituirá.') : 'Aún sin ticket ni precio propio.'} Solo cambian los viajes que conduce esta persona.`;
   $('mbDel').hidden = isMe(id) || S.members.length<2;
   showSheet('memberSheet');
 }
@@ -2022,8 +2040,21 @@ $('mbSave').onclick = ()=>{
   let ph = $('mbPhone').value.replace(/\D/g,''); if(ph.length===11 && ph.startsWith('34')) ph = ph.slice(2);
   if(!n){ $('mbErr').textContent = 'Escribe un nombre.'; return; }
   if(ph && !/^[67]\d{8}$/.test(ph)){ $('mbErr').textContent = 'El teléfono debe ser un móvil español de 9 cifras.'; return; }
+  const consTxt = $('mbCons').value.trim(), cons = num(consTxt);
+  if(consTxt && !(cons>=1 && cons<=30)){ $('mbErr').textContent = 'El consumo debe estar entre 1 y 30 L/100 km.'; return; }
+  const priceTxt = $('mbPrice').value.trim(), price = num(priceTxt);
+  if(priceTxt && !(price>0.3 && price<5)){ $('mbErr').textContent = 'El precio debe estar entre 0,30 y 5,00 €/L.'; return; }
   p.name = n.slice(0,24).trim(); if(ph) p.phone = ph; else delete p.phone;
-  save(); hideSheets(); renderAll(); toast('Datos guardados');
+  const consChanged = (p.cons||0) !== (consTxt ? +cons.toFixed(2) : 0);
+  if(consTxt) p.cons = +cons.toFixed(2); else delete p.cons;
+  // precio: si ha cambiado respecto al que tiene ahora, pasa a ser su precio manual desde hoy
+  const cur0 = lastEvent(mbId, todayKey());
+  if(priceTxt && (!cur0 || Math.abs(cur0.p - price) > 0.0005)){ p.price = +price.toFixed(3); p.priceFrom = todayKey(); }
+  else if(!priceTxt && p.price){ delete p.price; delete p.priceFrom; }
+  const nTrips = recomputeDriverPrices(mbId);
+  const driven = Object.values(S.trips).filter(t=>t.driver===mbId).length;
+  save(); hideSheets(); renderAll();
+  toast(`Datos guardados${nTrips ? ` · ${nTrips} ${nTrips===1?'viaje':'viajes'} con nuevo precio` : ''}${consChanged && driven ? ` · coste de sus ${driven} viajes recalculado` : ''}`);
 };
 $('mbDel').onclick = ()=>{
   const p = member(mbId);
@@ -2045,27 +2076,117 @@ async function copyBizum(key){
   const ok = await copyText(text); buzz();
   toast(ok ? (isMe(t.to) ? `Mensaje para ${nameOf(t.from)} copiado` : 'Datos del Bizum copiados: pégalos en tu banco') : 'No se ha podido copiar');
 }
-function waSummary(y,m){
-  const b = monthBalance(y,m), st = monthStats(y,m);
-  const L = [`🚗 *MoneyPetrol · ${MONTHS[m]} ${y}*`, `⛽ Gasoil del mes: *${eur(b.gross)}* (${st.n} ${st.n===1?'viaje':'viajes'} · ${fmt(st.km,0)} km)`];
-  if(b.bonusTotal>0) L.push(`🎁 Bonificación Tribbu: −${eur(b.bonusTotal)}`);
-  const pend = b.transfers.filter(t=>!t.paid), done = b.transfers.filter(t=>t.paid);
-  L.push('');
-  if(pend.length){
-    L.push('💸 *Pagos pendientes*');
-    pend.forEach(t=>{ const ph = member(t.to)?.phone; L.push(`• ${nameOf(t.from)} ➔ ${nameOf(t.to)}: *${eur(t.amount)}*${ph?` (Bizum ${fmtPhone(ph)})`:''}`); });
-  } else L.push('✅ *Todo pagado este mes*');
-  if(done.length){ L.push(''); L.push('✅ *Ya pagado*'); done.forEach(t=>L.push(`• ${nameOf(t.from)} ➔ ${nameOf(t.to)}: ${eur(t.amount)}`)); }
-  const people = S.members.filter(p=>b.info[p.id].trips>0);
-  if(people.length){ L.push(''); L.push('🗓️ *Viajes*'); people.forEach(p=>L.push(`• ${p.name}: ${b.info[p.id].trips} ${b.info[p.id].trips===1?'viaje':'viajes'} · condujo ${b.info[p.id].drove}`)); }
-  return L.join('\n');
+/* =====================================================================
+   3.1 · CIERRE MENSUAL EN PDF (html2pdf.js, se carga solo al usarlo)
+   ===================================================================== */
+const HTML2PDF_URL = 'https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js';
+let html2pdfLoading = null;
+function loadHtml2pdf(){
+  if(window.html2pdf) return Promise.resolve();
+  if(html2pdfLoading?.done) html2pdfLoading = null;          // se cargó pero ya no está: volver a pedirla
+  html2pdfLoading ||= new Promise((res, rej)=>{
+    const s = document.createElement('script'); s.src = HTML2PDF_URL; s.async = true;
+    s.onload = ()=>{ html2pdfLoading.done = true; window.html2pdf ? res() : rej(new Error('sin conexión para cargar el generador de PDF')); };
+    s.onerror = ()=>{ html2pdfLoading = null; s.remove(); rej(new Error('sin conexión para cargar el generador de PDF')); };
+    document.head.appendChild(s);
+  });
+  return html2pdfLoading;
 }
-$('waCopy').onclick = async ()=>{
-  const {y,m} = triCur;
-  if(!monthStats(y,m).n){ toast('No hay viajes este mes'); return; }
-  const ok = await copyText(waSummary(y,m)); buzz();
-  toast(ok ? 'Resumen copiado: pégalo en el grupo de WhatsApp' : 'No se ha podido copiar');
-};
+// Plantilla en memoria (modo claro, pensada para leerse en el móvil)
+function monthPdfHtml(y, m){
+  const st = monthStats(y,m), b = monthBalance(y,m), mk = monthKey(y,m);
+  const tk = ticketsSorted().filter(r=>r.fecha.startsWith(mk));
+  const avgL = st.liters>0 ? st.cost/st.liters : 0;
+  const tkL = tk.reduce((a,r)=>a+r.litros,0), tkT = tk.reduce((a,r)=>a+r.total_euros,0);
+  const dd = f => f.split('-').reverse().join('/');
+  const card = (lbl,val,sub='') => `<div class="c"><div class="l">${lbl}</div><div class="v">${val}</div>${sub?`<div class="s">${sub}</div>`:''}</div>`;
+  const people = S.members.filter(p=>b.info[p.id].trips>0 || Math.abs(b.bal[p.id]||0)>0.005);
+  return `<div class="mp">
+  <style>
+    .mp{width:720px;padding:28px 30px;background:#fff;color:#1c1c1e;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Arial,sans-serif;font-size:15px;line-height:1.4;box-sizing:border-box}
+    .mp *{box-sizing:border-box}
+    .mp .num{font-variant-numeric:tabular-nums}
+    .mp .hd{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:3px solid #e8337f;padding-bottom:14px;margin-bottom:18px}
+    .mp h1{font-size:24px;margin:0;letter-spacing:-.4px} .mp .per{font-size:20px;font-weight:700;color:#e8337f;margin-top:2px}
+    .mp .meta{text-align:right;font-size:13px;color:#6e6e73;line-height:1.5}
+    .mp .cards{display:flex;gap:10px;margin-bottom:22px}
+    .mp .c{flex:1;border:1px solid #e5e5ea;border-radius:14px;padding:12px 14px;background:#f9f9fb}
+    .mp .c .l{font-size:12px;color:#6e6e73;text-transform:uppercase;letter-spacing:.4px}
+    .mp .c .v{font-size:24px;font-weight:700;margin-top:4px;font-variant-numeric:tabular-nums}
+    .mp .c .s{font-size:12px;color:#6e6e73;margin-top:2px}
+    .mp h2{font-size:18px;margin:22px 0 8px}
+    .mp table{width:100%;border-collapse:separate;border-spacing:0;border:1px solid #e5e5ea;border-radius:12px;overflow:hidden;font-size:14px}
+    .mp th{background:#f2f2f7;text-align:left;font-size:12px;color:#6e6e73;text-transform:uppercase;letter-spacing:.3px;padding:8px 10px;font-weight:600}
+    .mp td{padding:9px 10px;border-top:1px solid #e5e5ea;font-variant-numeric:tabular-nums}
+    .mp td.r,.mp th.r{text-align:right}
+    .mp tr{page-break-inside:avoid}
+    .mp .tr{border:2px solid #34c759;border-radius:14px;padding:6px 14px;background:#f2fbf4}
+    .mp .t{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-top:1px solid #d7efdc;font-size:16px}
+    .mp .t:first-child{border-top:0}
+    .mp .t b{font-size:18px} .mp .t small{display:block;color:#6e6e73;font-size:13px}
+    .mp .ok{color:#8e8e93;text-decoration:line-through} .mp .pos{color:#1f9d4c} .mp .neg{color:#d9480f}
+    .mp .empty{color:#8e8e93;font-style:italic;padding:10px 0}
+    .mp .ft{margin-top:26px;padding-top:10px;border-top:1px solid #e5e5ea;font-size:11px;color:#8e8e93;display:flex;justify-content:space-between}
+  </style>
+  <div class="hd"><div><h1>MoneyPetrol - Cierre de Mes</h1><div class="per">${MONTHS[m]} ${y}</div></div>
+    <div class="meta">Grupo: <b>${esc(SY.group || 'Local')}</b><br>Generado el ${new Date().toLocaleDateString('es-ES')}<br>por ${esc(meName())}</div></div>
+  <div class="cards">
+    ${card('Kilómetros', `${fmt(st.km,0)} km`, `${st.n} ${st.n===1?'viaje':'viajes'}`)}
+    ${card('Gasto en combustible', eur(b.gross), b.bonusTotal>0 ? `Tribbu −${eur(b.bonusTotal)}` : `${fmt(st.liters,1)} L estimados`)}
+    ${card('Precio medio / litro', avgL ? `${fmt(avgL,3)} €` : '—', 'de los viajes del mes')}
+  </div>
+  <h2>⛽ Repostajes del mes</h2>
+  ${tk.length ? `<table><tr><th>Fecha</th><th>Pagado por</th><th>Gasolinera</th><th class="r">Litros</th><th class="r">Importe</th></tr>
+    ${tk.map(r=>`<tr><td>${dd(r.fecha)}</td><td>${esc(nameOf(r.by))}</td><td>${esc(r.gasolinera||'—')}</td><td class="r">${fmt(r.litros,2)}</td><td class="r">${eur(r.total_euros)}</td></tr>`).join('')}
+    <tr><td colspan="3"><b>Total</b></td><td class="r"><b>${fmt(tkL,2)}</b></td><td class="r"><b>${eur(tkT)}</b></td></tr></table>`
+    : '<div class="empty">No hay tickets registrados este mes.</div>'}
+  <div class="sec"><h2>💸 Transferencias / Bizum</h2>
+  <div class="tr">${b.transfers.length ? b.transfers.map(t=>{ const ph = member(t.to)?.phone;
+      return `<div class="t"><div><span class="${t.paid?'ok':''}">${esc(nameOf(t.from))} ➔ ${esc(nameOf(t.to))}</span><small>${t.paid?'✅ Pagado':ph?`Bizum: ${fmtPhone(ph)}`:'Sin teléfono Bizum'}</small></div><b class="num ${t.paid?'ok':''}">${eur(t.amount)}</b></div>`; }).join('')
+    : '<div class="empty">No hay nada que saldar este mes.</div>'}</div></div>
+  <h2>🗓️ Viajes por integrante</h2>
+  ${people.length ? `<table><tr><th>Integrante</th><th class="r">Viajes</th><th class="r">Días conducidos</th><th class="r">Su parte</th><th class="r">Saldo</th></tr>
+    ${people.map(p=>{ const o=b.info[p.id], v=b.bal[p.id]||0;
+      return `<tr><td>${esc(p.name)}</td><td class="r">${o.trips}</td><td class="r">${o.drove}</td><td class="r">${eur(o.share)}</td><td class="r ${v>0.005?'pos':v<-0.005?'neg':''}">${v>0.005?'+':''}${eur(v)}</td></tr>`; }).join('')}</table>`
+    : '<div class="empty">No hay viajes este mes.</div>'}
+  <div class="ft"><span>Saldo positivo = recibe · negativo = paga</span><span>MoneyPetrol 3.1 · Freddy Jara Echeverría</span></div>
+</div>`;
+}
+let pdfBusy = false;
+async function exportMonthPDF(y, m){
+  if(pdfBusy) return;
+  if(!monthStats(y,m).n && !ticketsSorted().some(r=>r.fecha.startsWith(monthKey(y,m)))){ toast('No hay viajes ni tickets este mes'); return; }
+  pdfBusy = true;
+  const btn = $('pdfExportBtn'), label = btn.textContent;
+  btn.disabled = true; btn.textContent = '⏳ Generando PDF…';
+  try{
+    await loadHtml2pdf();
+    const el = document.createElement('div'); el.innerHTML = monthPdfHtml(y, m);   // no toca la vista activa
+    const filename = `MoneyPetrol_${SY.group || 'Cierre'}_${MONTHS[m]}_${y}.pdf`;
+    const opt = {
+      margin: [10, 10, 10, 10], filename,
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2, useCORS: true, backgroundColor: '#ffffff', scrollX: 0, scrollY: 0, windowWidth: 720 },   // scroll 0: evita el hueco y el corte si la pantalla está desplazada
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+      pagebreak: { mode: ['css', 'legacy'], avoid: ['tr', '.c', '.tr', '.sec'] }
+    };
+    await new Promise(r=>setTimeout(r, 30));                                         // deja pintar el «Generando…»
+    const blob = await window.html2pdf().set(opt).from(el.firstElementChild).outputPdf('blob');
+    const file = new File([blob], filename, { type:'application/pdf' });
+    // En iPhone: menú Compartir (Guardar en Archivos, WhatsApp, Mail…). Si no, descarga normal.
+    let shared = false;
+    try{ if(navigator.canShare && navigator.canShare({ files:[file] })){ await navigator.share({ files:[file], title: filename }); shared = true; } }
+    catch(e){ if(e.name==='AbortError') shared = true; }
+    if(!shared){
+      const url = URL.createObjectURL(blob), a = document.createElement('a');
+      a.href = url; a.download = filename; document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(()=>URL.revokeObjectURL(url), 4000);
+    }
+    buzz(); toast('📄 PDF del cierre listo');
+  }catch(e){ toast('No se ha podido crear el PDF: ' + (e.message||'error')); }
+  finally{ pdfBusy = false; btn.disabled = false; btn.textContent = label; }
+}
+$('pdfExportBtn').onclick = ()=> exportMonthPDF(triCur.y, triCur.m);
 
 /* =====================================================================
    3.0 · AVISO DE FIN DE MES (notificación local + globo en el icono)
@@ -2077,11 +2198,9 @@ if('serviceWorker' in navigator && location.protocol==='https:'){
   navigator.serviceWorker.register('./sw.js').then(r=>{ swReg = r; }).catch(()=>{});
   navigator.serviceWorker.addEventListener('message', e=>{ if(e.data?.open==='balances') openTab('v-tri'); });
 }
-function lastSchoolDay(y,m){ for(let d=new Date(y,m+1,0).getDate(); d>0; d--){ const k=keyOf(y,m,d); if(!noClass(k)) return k; } return null; }
+// El aviso de cierre de mes solo salta el ÚLTIMO día del mes (una vez), nunca los días anteriores
 function inMonthEndWindow(){
-  const y=now.getFullYear(), m=now.getMonth(), last=new Date(y,m+1,0).getDate();
-  const lsd = lastSchoolDay(y,m);
-  return (last - now.getDate() <= 2) || (lsd && todayKey() >= lsd);
+  return now.getDate() === new Date(now.getFullYear(), now.getMonth()+1, 0).getDate();
 }
 async function enableNotify(){
   if(!('Notification' in window)){ toast('Tu iPhone necesita iOS 16.4+ y abrir MoneyPetrol desde el icono de inicio'); return false; }
@@ -2138,6 +2257,7 @@ const SUPABASE_ANON_KEY = 'sb_publishable_5yX0ytV74ba2iBCu5azB9w_ySX1VnwY';
 const KEY_SYNC = 'moneypetrol_sync';
 const SYNC_ORDER = ['members','group_settings','trips','expenses','bonuses','payments'];   // integrantes antes que rutina y viajes
 var SY = (()=>{ try{ const x = JSON.parse(localStorage.getItem(KEY_SYNC)); if(x && typeof x==='object') return { group:x.group||null, shadow:x.shadow||{}, lastSync:x.lastSync||null }; }catch(e){} return { group:null, shadow:{}, lastSync:null }; })();
+let carColsMissing = false;
 let sb = null, sbChannel = null, pushTimer = null, pullTimer = null, applyingRemote = false, pushing = false, pushAgain = false, syncState = 'off', syncErr = '';
 const saveSync = () => { try{ localStorage.setItem(KEY_SYNC, JSON.stringify(SY)); }catch(e){} };
 const normCode = c => String(c||'').toUpperCase().replace(/\s+/g,'-').replace(/[^A-Z0-9-]/g,'').slice(0,30);
@@ -2155,7 +2275,8 @@ function rowsFromState(){
     default_driver_id: rt?.driver || null, default_passenger_ids: rt ? rt.occ.filter(x=>x!==rt.driver) : [],
     default_distance_km: rt ? S.dest[rt.dest].km : null, auto_mode_enabled: !!rt?.enabled, default_destination: rt?.dest || null,
     price_per_liter: s.price, consumption: s.cons, driver_pays: !!s.driverPays, km_roda: S.dest.roda.km, km_motilla: S.dest.motilla.km });
-  S.members.forEach(m=> put('members', gid(m.id), { id:gid(m.id), group_id:g, member_id:m.id, name:m.name, phone:m.phone||null, deleted:false }));
+  S.members.forEach(m=> put('members', gid(m.id), { id:gid(m.id), group_id:g, member_id:m.id, name:m.name, phone:m.phone||null,
+    consumption:m.cons||null, fuel_price:m.price||null, fuel_price_from:m.priceFrom||null, deleted:false }));
   for(const [k,tr] of Object.entries(S.trips)) put('trips', gid(k), { id:gid(k), group_id:g, date:k, driver_id:tr.driver,
     passenger_ids: tr.occ.filter(x=>x!==tr.driver), distance_km: S.dest[tr.dest].km, is_auto_generated: !!tr.auto,
     destination: tr.dest, price_per_liter: tr.price ?? null, price_manual: !!tr.priceManual, status:'trip' });
@@ -2208,7 +2329,11 @@ async function pushChanges(){
     for(const t of SYNC_ORDER){
       for(const [bucket, opts] of [[ups,{}],[insertOnly,{ ignoreDuplicates:true }]]){
         const list = bucket[t]; if(!list?.length) continue;
-        const { error } = await sb.from(t).upsert(list.map(x=>({ ...x.row, updated_at:stamp })), { onConflict: t==='group_settings'?'group_id':'id', ...opts });
+        let { error } = await sb.from(t).upsert(list.map(x=>({ ...x.row, updated_at:stamp })), { onConflict: t==='group_settings'?'group_id':'id', ...opts });
+        if(error && t==='members' && /consumption|fuel_price/i.test(error.message||'')){
+          ({ error } = await sb.from(t).upsert(list.map(x=>{ const { consumption, fuel_price, fuel_price_from, ...rest } = x.row; return { ...rest, updated_at:stamp }; }), { onConflict:'id', ...opts }));
+          if(!error) carColsMissing = true;
+        }
         if(error) throw error;
         list.forEach(x=> SY.shadow[x.k] = x.h);
       }
@@ -2219,7 +2344,7 @@ async function pushChanges(){
       if(error) throw error;
       delete SY.shadow[k];
     }
-    SY.lastSync = stamp; saveSync(); setSync('ok');
+    SY.lastSync = stamp; saveSync(); setSync(carColsMissing ? 'warn' : 'ok', carColsMissing ? 'el coche de cada integrante no se sincroniza: ejecuta el SQL de actualización en Supabase' : '');
     if(Object.values(insertOnly).some(l=>l.length)) schedulePull(300);   // comprobar si el grupo ya tenía algo esos días
   }catch(e){ saveSync(); setSync(navigator.onLine?'err':'warn', friendlyErr(e)); }
   finally{ pushing = false; if(pushAgain){ pushAgain = false; pushChanges(); } }
@@ -2253,14 +2378,19 @@ function applyRemote(table, rows, { force=false, quiet=false } = {}){
       else if(table==='members'){
         const id = r.member_id || localId(r.id), m = member(id);
         if(r.deleted){ if(!isMe(id)) S.members = S.members.filter(x=>x.id!==id); }
-        else if(m){ m.name = r.name || m.name; if(r.phone) m.phone = r.phone; else delete m.phone; }
-        else S.members.push({ id, name: r.name || 'Sin nombre', ...(r.phone?{phone:r.phone}:{}) });
+        else {
+          const tgt = m || (S.members.push({ id, name: r.name || 'Sin nombre' }), member(id));
+          tgt.name = r.name || tgt.name;
+          if(r.phone) tgt.phone = r.phone; else delete tgt.phone;
+          if(r.consumption !== undefined){ if(r.consumption>0) tgt.cons = +r.consumption; else delete tgt.cons; }
+          if(r.fuel_price !== undefined){ if(r.fuel_price>0 && r.fuel_price_from){ tgt.price = +r.fuel_price; tgt.priceFrom = r.fuel_price_from; } else { delete tgt.price; delete tgt.priceFrom; } }
+        }
       }
       else if(table==='trips'){
         const k = r.date || localId(r.id);
         if(r.status==='trip' && r.driver_id){
           const dest = DEFAULT_DEST[r.destination] ? r.destination : (Math.abs((r.distance_km||0)-S.dest.motilla.km) < Math.abs((r.distance_km||0)-S.dest.roda.km) ? 'motilla' : 'roda');
-          S.trips[k] = { dest, price: r.price_per_liter>0 ? +r.price_per_liter : priceOn(k), occ:[r.driver_id, ...(r.passenger_ids||[]).filter(x=>x!==r.driver_id)], driver:r.driver_id };
+          S.trips[k] = { dest, price: r.price_per_liter>0 ? +r.price_per_liter : priceOn(k, r.driver_id), occ:[r.driver_id, ...(r.passenger_ids||[]).filter(x=>x!==r.driver_id)], driver:r.driver_id };
           if(r.is_auto_generated) S.trips[k].auto = true;
           if(r.price_manual) S.trips[k].priceManual = true;
           delete S.skips[k];
@@ -2342,7 +2472,8 @@ async function syncNow(){
     if(syncState==='err') return;
     await pullAll();
     if(!sbChannel) subscribeRealtime();
-    SY.lastSync = new Date().toISOString(); saveSync(); setSync('ok');
+    SY.lastSync = new Date().toISOString(); saveSync();
+    setSync(carColsMissing ? 'warn' : 'ok', carColsMissing ? 'el coche de cada integrante no se sincroniza: ejecuta el SQL de actualización en Supabase' : '');
   }catch(e){ setSync(navigator.onLine?'err':'warn', friendlyErr(e)); }
 }
 
