@@ -41,8 +41,8 @@ button{background:none;border:0;cursor:pointer}
              radial-gradient(50% 35% at 100% 10%,rgba(10,132,255,.14),transparent 70%)}
 
 /* cabecera */
-header{position:fixed;top:0;left:0;right:0;z-index:20;height:auto;isolation:isolate;background:#000;   /* fondo en la propia cabecera: iOS 26 difumina el borde superior si no lo detecta */
-  padding:max(env(safe-area-inset-top), 24px) max(18px, env(safe-area-inset-right)) 10px max(18px, env(safe-area-inset-left));
+header{position:fixed;top:0;left:0;right:0;z-index:20;height:auto;isolation:isolate;background:#000;
+  padding:max(env(safe-area-inset-top), 10px) max(18px, env(safe-area-inset-right)) 10px max(18px, env(safe-area-inset-left));
   border-bottom:.5px solid var(--sep);display:flex;align-items:center;gap:11px}
 header::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:#000}
 header > div{min-width:0}
@@ -166,11 +166,16 @@ main{position:relative;z-index:1;padding:calc(var(--hh, 110px) + 12px) 16px calc
 
 /* tab bar */
 nav{position:fixed;left:12px;right:12px;bottom:calc(var(--sb) + 10px);z-index:30;max-width:520px;margin:0 auto;
-  display:flex;background:rgba(30,30,32,.7);-webkit-backdrop-filter:saturate(180%) blur(24px);backdrop-filter:saturate(180%) blur(24px);
-  border:.5px solid rgba(255,255,255,.1);border-radius:26px;padding:6px;box-shadow:0 12px 34px rgba(0,0,0,.5)}
-nav button{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:7px 0;border-radius:20px;color:var(--text2);font-size:10.5px;font-weight:600;transition:.2s}
+  display:flex;padding:6px;border-radius:32px;
+  /* cristal: fondo muy transparente, lo de detrás desenfocado y avivado, brillo en el borde superior */
+  background:linear-gradient(180deg,rgba(255,255,255,.11),rgba(255,255,255,.03) 46%,rgba(255,255,255,.07)),rgba(24,24,28,.40);
+  -webkit-backdrop-filter:blur(26px) saturate(190%) brightness(1.12);backdrop-filter:blur(26px) saturate(190%) brightness(1.12);
+  border:.5px solid rgba(255,255,255,.18);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.30),inset 0 -1px 0 rgba(255,255,255,.07),0 14px 36px rgba(0,0,0,.5)}
+nav button{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:7px 0;border-radius:26px;color:rgba(235,235,245,.72);font-size:10.5px;font-weight:600;transition:.2s}
 nav button svg{width:23px;height:23px}
-nav button.on{color:var(--blue);background:rgba(10,132,255,.14)}
+nav button.on{color:#4da3ff;background:linear-gradient(180deg,rgba(255,255,255,.20),rgba(255,255,255,.08));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.34),inset 0 0 0 .5px rgba(255,255,255,.10),0 4px 14px rgba(0,0,0,.28)}   /* pestaña activa: cápsula de cristal */
 
 /* hoja inferior */
 .backdrop{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:40;opacity:0;pointer-events:none;transition:opacity .25s}
@@ -203,12 +208,18 @@ header h1 .ver{display:inline-block;font-size:.62em;font-weight:700;vertical-ali
   padding:calc(var(--st) + 28px) 26px calc(var(--sb) + 22px);background:#050507;overflow:hidden;
   transition:opacity .45s ease,transform .45s ease}
 .splash.out{opacity:0;transform:scale(1.04);pointer-events:none}
-.splash::before{content:"";position:absolute;inset:-20%;pointer-events:none;
-  background:radial-gradient(45% 30% at 50% 18%,rgba(255,105,180,.28),transparent 70%),
-             radial-gradient(40% 30% at 85% 90%,rgba(212,154,18,.18),transparent 70%),
-             radial-gradient(40% 30% at 10% 75%,rgba(10,132,255,.12),transparent 70%);
-  animation:drift 12s ease-in-out infinite alternate}
-@keyframes drift{to{transform:translate(3%,-3%) scale(1.05)}}
+/* fondo vivo: tres manchas de color (rosa, dorado, azul) que se desplazan despacio, cada una a su ritmo */
+.splash .spAura{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.splash .spAura i{position:absolute;border-radius:50%;will-change:transform}
+.splash .spAura i:nth-child(1){width:120vmin;height:120vmin;left:50%;top:16%;margin:-60vmin 0 0 -60vmin;
+  background:radial-gradient(closest-side,rgba(255,105,180,.32),rgba(255,105,180,.10) 55%,transparent);animation:aura1 13s ease-in-out infinite alternate}
+.splash .spAura i:nth-child(2){width:110vmin;height:110vmin;left:86%;top:90%;margin:-55vmin 0 0 -55vmin;
+  background:radial-gradient(closest-side,rgba(212,154,18,.24),rgba(212,154,18,.07) 55%,transparent);animation:aura2 17s ease-in-out infinite alternate}
+.splash .spAura i:nth-child(3){width:110vmin;height:110vmin;left:8%;top:74%;margin:-55vmin 0 0 -55vmin;
+  background:radial-gradient(closest-side,rgba(10,132,255,.17),rgba(10,132,255,.05) 55%,transparent);animation:aura3 21s ease-in-out infinite alternate}
+@keyframes aura1{0%{transform:translate(-14%,-4%) scale(1)}50%{transform:translate(12%,7%) scale(1.14)}100%{transform:translate(-3%,15%) scale(.94)}}
+@keyframes aura2{0%{transform:translate(4%,6%) scale(1)}50%{transform:translate(-16%,-12%) scale(1.16)}100%{transform:translate(-30%,2%) scale(1.02)}}
+@keyframes aura3{0%{transform:translate(-4%,8%) scale(1.04)}50%{transform:translate(16%,-12%) scale(.92)}100%{transform:translate(30%,4%) scale(1.14)}}
 .splash > *{position:relative}
 /* saludo + nombre de la app animado letra a letra + versión */
 .splash .spHello{font-size:20px;font-weight:600;color:var(--text2);margin-top:14px;max-width:100%;overflow-wrap:anywhere;animation:rise .6s ease both}
@@ -300,7 +311,7 @@ header h1 .ver{display:inline-block;font-size:.62em;font-weight:700;vertical-ali
 .foot{text-align:center;color:var(--text3);font-size:12px;margin-top:18px;line-height:1.5}
 /* ===== Ajuste para iPhone (6,1" a 6,9"), Dynamic Island / notch ===== */
 @media (max-width:500px){
-  header{padding:max(env(safe-area-inset-top), 24px) 16px 8px;gap:10px}
+  header{padding:max(env(safe-area-inset-top), 10px) 16px 8px;gap:10px}   /* con barra de estado opaca el margen seguro es 0: basta un hueco pequeño */
   header svg{width:34px;height:34px;border-radius:9px}
   header h1{font-size:19px}
   header .sub{font-size:11.5px}
@@ -448,10 +459,28 @@ nav button{font-size:10px}
 .monthHead b{color:var(--text);font-weight:600}
 @media (max-width:500px){ nav button{font-size:9.5px} nav button svg{width:22px;height:22px} }
 .rowBtn:active{background:rgba(255,255,255,.04)}
+
+/* ===== 3.3 · cristal en lo que flota sobre el contenido =====
+   Mismo material que la barra de pestañas: fondo translúcido, lo de detrás desenfocado y brillo en el borde superior.
+   Las tarjetas y la cabecera se quedan mates a propósito (son contenido, no controles flotantes). */
+.toast{background:linear-gradient(180deg,rgba(255,255,255,.13),rgba(255,255,255,.04)),rgba(30,30,34,.55);
+  -webkit-backdrop-filter:blur(26px) saturate(190%) brightness(1.1);backdrop-filter:blur(26px) saturate(190%) brightness(1.1);
+  border:.5px solid rgba(255,255,255,.18);box-shadow:inset 0 1px 0 rgba(255,255,255,.28),0 10px 28px rgba(0,0,0,.45)}
+.sheet{background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,0) 96px),rgba(22,22,26,.80);
+  -webkit-backdrop-filter:blur(34px) saturate(180%);backdrop-filter:blur(34px) saturate(180%);
+  border-top:.5px solid rgba(255,255,255,.20);box-shadow:inset 0 1px 0 rgba(255,255,255,.22)}
+.sheet.on{box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 -14px 44px rgba(0,0,0,.5)}
+.grab{background:rgba(255,255,255,.34)}
+.iconBtn{background:linear-gradient(180deg,rgba(255,255,255,.15),rgba(255,255,255,.05)),rgba(118,118,128,.16);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.24),inset 0 0 0 .5px rgba(255,255,255,.08)}
+.seg{box-shadow:inset 0 0 0 .5px rgba(255,255,255,.08)}
+.seg button.on{background:linear-gradient(180deg,rgba(255,255,255,.27),rgba(255,255,255,.12));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.36),0 3px 8px rgba(0,0,0,.3)}
 </style>
 </head>
 <body>
 <div class="splash" id="splash" role="dialog" aria-modal="true" aria-label="Bienvenida">
+  <div class="spAura" aria-hidden="true"><i></i><i></i><i></i></div>
   <div class="spHello" id="spHello"></div>
   <div class="spBrand" role="img" aria-label="MoneyPetrol"><span id="spWord" aria-hidden="true"></span><span class="spVer" id="spVer"></span></div>
   <div class="spLine" aria-hidden="true"></div>
@@ -823,7 +852,7 @@ nav button{font-size:10px}
 /* =====================================================================
    MoneyPetrol
    ===================================================================== */
-const APP_VERSION = '3.2.1';                    // único sitio donde se escribe la versión (más el nombre de la caché en sw.js)
+const APP_VERSION = '3.3';                    // único sitio donde se escribe la versión (más el nombre de la caché en sw.js)
 const KEY = 'moneypetrol_v1';               // datos (se mantiene la clave para no perder nada)
 const KEY_AI = 'moneypetrol_gemini';          // API key: separada, nunca se exporta
 const DEFAULT_MODEL = 'gemini-flash-latest';  // alias que Google mantiene apuntando al Flash vigente
