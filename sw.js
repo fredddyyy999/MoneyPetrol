@@ -4,7 +4,7 @@
      3 segundos (mala cobertura), abre la copia guardada y la actualiza por detrás para la próxima vez.
    - Guarda el generador de PDF tras usarlo por primera vez (cierre mensual sin conexión).
    - Al tocar el aviso de fin de mes, abre la app en Balances. */
-const CACHE = 'moneypetrol-3.2';
+const CACHE = 'moneypetrol-3.2.1';
 const PDF_LIB = 'https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js';
 const CORE = ['./', './index.html'];
 const NET_TIMEOUT = 3000;
